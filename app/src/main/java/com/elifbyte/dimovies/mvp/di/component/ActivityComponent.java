@@ -21,7 +21,9 @@ import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogFragment;
 import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceFragment;
 import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
 import com.elifbyte.dimovies.mvp.ui.main.MainActivity;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowFragment;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RateUsDialog;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingFragment;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashActivity;
 import com.elifbyte.dimovies.mvp.di.PerActivity;
 import com.elifbyte.dimovies.mvp.di.module.ActivityModule;
@@ -46,6 +48,10 @@ public interface ActivityComponent {
 
     void inject(MainActivity activity);
 
+    void inject(NowFragment fragment);
+
+    void inject(UpcomingFragment fragment);
+
     void inject(LoginActivity activity);
 
     void inject(SplashActivity activity);
@@ -59,5 +65,6 @@ public interface ActivityComponent {
     void inject(BlogFragment fragment);
 
     void inject(RateUsDialog dialog);
+
 
 }

@@ -50,6 +50,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         super(dataManager, schedulerProvider, compositeDisposable);
     }
 
+
     @Override
     public void onDrawerOptionAboutClick() {
         getMvpView().closeNavigationDrawer();
@@ -106,9 +107,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                             return;
                         }
 
-                        if (questionList != null) {
+                        /*if (questionList != null) {
                             getMvpView().refreshQuestionnaire(questionList);
-                        }
+                        }*/
                     }
                 }));
     }
@@ -126,9 +127,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
                             return;
                         }
 
-                        if (questionList != null) {
+                        /*if (questionList != null) {
                             getMvpView().reloadQuestionnaire(questionList);
-                        }
+                        }*/
                     }
                 }));
     }

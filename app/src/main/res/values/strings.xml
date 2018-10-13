@@ -23,6 +23,7 @@
     <string name="paste">Paste</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
+    <string name="search">Search</string>
 
     <!--Drawer-->
     <string name="open_drawer">Drawer Open</string>
@@ -84,5 +85,7 @@
     <string name="empty_screen">We do not have anything\nhere right now.</string>
     <string name="please_retry">Please Retry</string>
     <string name="retry">Retry</string>
+    <string name="now_palying">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
 
 </resources>

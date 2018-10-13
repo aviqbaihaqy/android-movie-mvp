@@ -35,9 +35,18 @@ import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourcePresenter;
 import com.elifbyte.dimovies.mvp.ui.login.LoginMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.login.LoginPresenter;
 import com.elifbyte.dimovies.mvp.ui.main.MainMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.MainPagerAdapter;
 import com.elifbyte.dimovies.mvp.ui.main.MainPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowAdapter;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowPresenter;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingAdapter;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingPresenter;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashPresenter;
 import com.elifbyte.dimovies.mvp.utils.rx.AppSchedulerProvider;
@@ -141,6 +150,33 @@ public class ActivityModule {
     MainMvpPresenter<MainMvpView> provideMainPresenter(
             MainPresenter<MainMvpView> presenter) {
         return presenter;
+    }
+
+    @Provides
+    NowMvpPresenter<NowMvpView> provideNowMvpPresenter(
+            NowPresenter<NowMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    UpcomingMvpPresenter<UpcomingMvpView> provideUpcomingPresenter(
+            UpcomingPresenter<UpcomingMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    NowAdapter provideNowAdapter() {
+        return new NowAdapter(new ArrayList<BlogResponse.Blog>());
+    }
+
+    @Provides
+    UpcomingAdapter provideUpcomingAdapter() {
+        return new UpcomingAdapter(new ArrayList<OpenSourceResponse.Repo>());
+    }
+
+    @Provides
+    MainPagerAdapter provideMainPagerAdapter(AppCompatActivity activity) {
+        return new MainPagerAdapter(activity.getSupportFragmentManager());
     }
 
     @Provides

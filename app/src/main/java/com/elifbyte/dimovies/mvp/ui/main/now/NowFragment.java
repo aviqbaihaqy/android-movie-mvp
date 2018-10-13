@@ -13,7 +13,7 @@
  * limitations under the License
  */
 
-package com.elifbyte.dimovies.mvp.ui.feed.blogs;
+package com.elifbyte.dimovies.mvp.ui.main.now;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,7 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
 import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
@@ -41,16 +40,16 @@ import butterknife.ButterKnife;
  * Created by janisharali on 25/05/17.
  */
 
-public class BlogFragment extends BaseFragment implements
-        BlogMvpView, BlogAdapter.Callback {
+public class NowFragment extends BaseFragment implements
+        NowMvpView, NowAdapter.Callback {
 
     private static final String TAG = "NowFragment";
 
     @Inject
-    BlogMvpPresenter<BlogMvpView> mPresenter;
+    NowMvpPresenter<NowMvpView> mPresenter;
 
     @Inject
-    BlogAdapter mBlogAdapter;
+    NowAdapter mNowAdapter;
 
     @Inject
     LinearLayoutManager mLayoutManager;
@@ -58,9 +57,9 @@ public class BlogFragment extends BaseFragment implements
     @BindView(R.id.blog_recycler_view)
     RecyclerView mRecyclerView;
 
-    public static BlogFragment newInstance() {
+    public static NowFragment newInstance() {
         Bundle args = new Bundle();
-        BlogFragment fragment = new BlogFragment();
+        NowFragment fragment = new NowFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -76,7 +75,7 @@ public class BlogFragment extends BaseFragment implements
             component.inject(this);
             setUnBinder(ButterKnife.bind(this, view));
             mPresenter.onAttach(this);
-            mBlogAdapter.setCallback(this);
+            mNowAdapter.setCallback(this);
         }
         return view;
     }
@@ -86,7 +85,7 @@ public class BlogFragment extends BaseFragment implements
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mBlogAdapter);
+        mRecyclerView.setAdapter(mNowAdapter);
 
         mPresenter.onViewPrepared();
     }
@@ -98,7 +97,7 @@ public class BlogFragment extends BaseFragment implements
 
     @Override
     public void updateBlog(List<BlogResponse.Blog> blogList) {
-        mBlogAdapter.addItems(blogList);
+        mNowAdapter.addItems(blogList);
     }
 
     @Override

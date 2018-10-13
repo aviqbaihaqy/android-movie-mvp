@@ -45,17 +45,23 @@
                     app:titleTextAppearance="@style/Toolbar.TitleText"
                     app:titleTextColor="@color/white" />
 
-                <View
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    style="@style/AppTab"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_gray" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="@color/white" />
 
             </android.support.design.widget.AppBarLayout>
 
-            <com.mindorks.placeholderview.SwipePlaceHolderView
-                android:id="@+id/cards_container"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/feed_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clipToPadding="false" />
 
         </LinearLayout>
     </android.support.design.widget.CoordinatorLayout>

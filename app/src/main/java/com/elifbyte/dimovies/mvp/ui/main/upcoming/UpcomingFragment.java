@@ -13,7 +13,7 @@
  * limitations under the License
  */
 
-package com.elifbyte.dimovies.mvp.ui.feed.blogs;
+package com.elifbyte.dimovies.mvp.ui.main.upcoming;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,9 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
 import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
 import com.elifbyte.dimovies.mvp.ui.base.BaseFragment;
 
@@ -41,26 +40,26 @@ import butterknife.ButterKnife;
  * Created by janisharali on 25/05/17.
  */
 
-public class BlogFragment extends BaseFragment implements
-        BlogMvpView, BlogAdapter.Callback {
+public class UpcomingFragment extends BaseFragment implements
+        UpcomingMvpView, UpcomingAdapter.Callback {
 
-    private static final String TAG = "NowFragment";
-
-    @Inject
-    BlogMvpPresenter<BlogMvpView> mPresenter;
+    private static final String TAG = "UpcomingFragment";
 
     @Inject
-    BlogAdapter mBlogAdapter;
+    UpcomingMvpPresenter<UpcomingMvpView> mPresenter;
+
+    @Inject
+    UpcomingAdapter mOpenSourceAdapter;
 
     @Inject
     LinearLayoutManager mLayoutManager;
 
-    @BindView(R.id.blog_recycler_view)
+    @BindView(R.id.repo_recycler_view)
     RecyclerView mRecyclerView;
 
-    public static BlogFragment newInstance() {
+    public static UpcomingFragment newInstance() {
         Bundle args = new Bundle();
-        BlogFragment fragment = new BlogFragment();
+        UpcomingFragment fragment = new UpcomingFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,14 +68,14 @@ public class BlogFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_blog, container, false);
+        View view = inflater.inflate(R.layout.fragment_open_source, container, false);
 
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);
             setUnBinder(ButterKnife.bind(this, view));
             mPresenter.onAttach(this);
-            mBlogAdapter.setCallback(this);
+            mOpenSourceAdapter.setCallback(this);
         }
         return view;
     }
@@ -86,19 +85,19 @@ public class BlogFragment extends BaseFragment implements
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mBlogAdapter);
+        mRecyclerView.setAdapter(mOpenSourceAdapter);
 
         mPresenter.onViewPrepared();
     }
 
     @Override
-    public void onBlogEmptyViewRetryClick() {
+    public void onRepoEmptyViewRetryClick() {
 
     }
 
     @Override
-    public void updateBlog(List<BlogResponse.Blog> blogList) {
-        mBlogAdapter.addItems(blogList);
+    public void updateRepo(List<OpenSourceResponse.Repo> repoList) {
+        mOpenSourceAdapter.addItems(repoList);
     }
 
     @Override

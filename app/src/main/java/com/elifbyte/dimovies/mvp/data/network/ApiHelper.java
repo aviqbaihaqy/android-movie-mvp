@@ -47,4 +47,13 @@ public interface ApiHelper {
     Single<BlogResponse> getBlogApiCall();
 
     Single<OpenSourceResponse> getOpenSourceApiCall();
+
+
+
+    Single<NowResponse> getNowApiCall();
+    Single<UpcomingResponse> getUpcomingApiCall();
+    Single<DiscoverResponse> getDiscoverApiCall();
+    Single<SearchResponse> getSearchApiCall();
+
+
 }

@@ -41,6 +41,20 @@ public final class ApiEndPoint {
     public static final String ENDPOINT_OPEN_SOURCE = BuildConfig.BASE_URL
             + "/5926c34212000035026871cd";
 
+
+
+    public static final String ENDPOINT_DISCOVER = BuildConfig.BASE_URL
+            + "/discover/movie";
+
+    public static final String ENDPOINT_SEARCH = BuildConfig.BASE_URL
+            + "/search/movie";
+
+    public static final String ENDPOINT_NOW_PLAYING = BuildConfig.BASE_URL
+            + "/movie/now_playing";
+
+    public static final String ENDPOINT_UPCOMING= BuildConfig.BASE_URL
+            + "/movie/upcoming";
+
     private ApiEndPoint() {
         // This class is not publicly instantiable
     }

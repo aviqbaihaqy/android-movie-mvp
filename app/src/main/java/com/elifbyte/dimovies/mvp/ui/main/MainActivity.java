@@ -23,9 +23,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -73,6 +75,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
 
+    @Inject
+    MainPagerAdapter mPagerAdapter;
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -85,8 +90,14 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.tv_app_version)
     TextView mAppVersionTextView;
 
-    @BindView(R.id.cards_container)
-    SwipePlaceHolderView mCardsContainerView;
+    @BindView(R.id.feed_view_pager)
+    ViewPager mViewPager;
+
+    @BindView(R.id.tab_layout)
+    TabLayout mTabLayout;
+
+    /*@BindView(R.id.cards_container)
+    SwipePlaceHolderView mCardsContainerView;*/
 
     private TextView mNameTextView;
 
@@ -116,6 +127,59 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
+    protected void setUp() {
+        setSupportActionBar(mToolbar);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawer,
+                mToolbar,
+                R.string.open_drawer,
+                R.string.close_drawer) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                hideKeyboard();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+        mDrawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+        setupNavMenu();
+        mPresenter.onNavMenuCreated();
+
+        mPagerAdapter.setCount(2);
+        mViewPager.setAdapter(mPagerAdapter);
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.now_palying)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(getString(R.string.upcoming)));
+
+        mViewPager.setOffscreenPageLimit(mTabLayout.getTabCount());
+
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+    }
+
+    @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(AboutFragment.TAG);
@@ -126,30 +190,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         }
     }
 
-    @Override
-    public void refreshQuestionnaire(List<Question> questionList) {
-        for (Question question : questionList) {
-            if (question != null
-                    && question.getOptionList() != null
-                    && question.getOptionList().size() == 3) {
-                mCardsContainerView.addView(new QuestionCard(question));
-            }
-        }
-    }
-
-    @Override
-    public void reloadQuestionnaire(List<Question> questionList) {
-        refreshQuestionnaire(questionList);
-        ScaleAnimation animation =
-                new ScaleAnimation(
-                        1.15f, 1, 1.15f, 1,
-                        Animation.RELATIVE_TO_SELF, 0.5f,
-                        Animation.RELATIVE_TO_SELF, 0.5f);
-
-        mCardsContainerView.setAnimation(animation);
-        animation.setDuration(100);
-        animation.start();
-    }
 
     @Override
     public void updateAppVersion() {
@@ -241,77 +281,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             ((Animatable) drawable).start();
         }
         switch (item.getItemId()) {
-            case R.id.action_cut:
-                return true;
-            case R.id.action_copy:
-                return true;
-            case R.id.action_share:
-                return true;
-            case R.id.action_delete:
+
+            case R.id.action_search:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected void setUp() {
-        setSupportActionBar(mToolbar);
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                mDrawer,
-                mToolbar,
-                R.string.open_drawer,
-                R.string.close_drawer) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                hideKeyboard();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-        };
-        mDrawer.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-        setupNavMenu();
-        mPresenter.onNavMenuCreated();
-        setupCardContainerView();
-        mPresenter.onViewInitialized();
-    }
-
-    private void setupCardContainerView() {
-
-        int screenWidth = ScreenUtils.getScreenWidth(this);
-        int screenHeight = ScreenUtils.getScreenHeight(this);
-
-        mCardsContainerView.getBuilder()
-                .setDisplayViewCount(3)
-                .setHeightSwipeDistFactor(10)
-                .setWidthSwipeDistFactor(5)
-                .setSwipeDecor(new SwipeDecor()
-                        .setViewWidth((int) (0.90 * screenWidth))
-                        .setViewHeight((int) (0.75 * screenHeight))
-                        .setPaddingTop(20)
-                        .setSwipeRotationAngle(10)
-                        .setRelativeScale(0.01f));
-
-        mCardsContainerView.addItemRemoveListener(new ItemRemovedListener() {
-            @Override
-            public void onItemRemoved(int count) {
-                if (count == 0) {
-                    // reload the contents again after 1 sec delay
-                    new Handler(getMainLooper()).postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mPresenter.onCardExhausted();
-                        }
-                    }, 800);
-                }
-            }
-        });
     }
 
     void setupNavMenu() {
@@ -331,12 +306,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                                 return true;
                             case R.id.nav_item_rate_us:
                                 mPresenter.onDrawerRateUsClick();
-                                return true;
-                            case R.id.nav_item_feed:
-                                mPresenter.onDrawerMyFeedClick();
-                                return true;
-                            case R.id.nav_item_logout:
-                                mPresenter.onDrawerOptionLogoutClick();
                                 return true;
                             default:
                                 return false;
