@@ -15,7 +15,7 @@
 
 package com.elifbyte.dimovies.mvp.ui.main.now;
 
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.ui.base.MvpView;
 
 import java.util.List;
@@ -26,5 +26,5 @@ import java.util.List;
 
 public interface NowMvpView extends MvpView {
 
-    void updateBlog(List<BlogResponse.Blog> blogList);
+    void updateMovie(List<MovieResultsItem> movieList);
 }

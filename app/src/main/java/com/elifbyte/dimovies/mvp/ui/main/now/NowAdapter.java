@@ -16,7 +16,6 @@
 package com.elifbyte.dimovies.mvp.ui.main.now;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +23,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.ui.base.BaseViewHolder;
-import com.elifbyte.dimovies.mvp.utils.AppLogger;
+import com.elifbyte.dimovies.mvp.ui.main.detail.DetailActivity;
 
 import java.util.List;
 
@@ -47,10 +47,10 @@ public class NowAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_NORMAL = 1;
 
     private Callback mCallback;
-    private List<BlogResponse.Blog> mBlogResponseList;
+    private List<MovieResultsItem> mMovieResponseList;
 
-    public NowAdapter(List<BlogResponse.Blog> blogResponseList) {
-        mBlogResponseList = blogResponseList;
+    public NowAdapter(List<MovieResultsItem> movieResponseList) {
+        mMovieResponseList = movieResponseList;
     }
 
     public void setCallback(Callback callback) {
@@ -68,7 +68,7 @@ public class NowAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         switch (viewType) {
             case VIEW_TYPE_NORMAL:
                 return new ViewHolder(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_blog_view, parent, false));
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_view, parent, false));
             case VIEW_TYPE_EMPTY:
             default:
                 return new EmptyViewHolder(
@@ -78,7 +78,7 @@ public class NowAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (mBlogResponseList != null && mBlogResponseList.size() > 0) {
+        if (mMovieResponseList != null && mMovieResponseList.size() > 0) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_EMPTY;
@@ -87,15 +87,15 @@ public class NowAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (mBlogResponseList != null && mBlogResponseList.size() > 0) {
-            return mBlogResponseList.size();
+        if (mMovieResponseList != null && mMovieResponseList.size() > 0) {
+            return mMovieResponseList.size();
         } else {
             return 1;
         }
     }
 
-    public void addItems(List<BlogResponse.Blog> blogList) {
-        mBlogResponseList.addAll(blogList);
+    public void addItems(List<MovieResultsItem> movieList) {
+        mMovieResponseList.addAll(movieList);
         notifyDataSetChanged();
     }
 
@@ -134,46 +134,43 @@ public class NowAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
 
-            final BlogResponse.Blog blog = mBlogResponseList.get(position);
+            final MovieResultsItem movie = mMovieResponseList.get(position);
 
-            if (blog.getCoverImgUrl() != null) {
+            if (movie.getPosterPath() != null) {
                 Glide.with(itemView.getContext())
-                        .load(blog.getCoverImgUrl())
+                        .load("https://image.tmdb.org/t/p/w500/" + movie.getPosterPath())
                         .asBitmap()
                         .centerCrop()
                         .into(coverImageView);
             }
 
-            if (blog.getTitle() != null) {
-                titleTextView.setText(blog.getTitle());
+            if (movie.getTitle() != null) {
+                titleTextView.setText(movie.getTitle());
             }
 
-            if (blog.getAuthor() != null) {
-                authorTextView.setText(blog.getAuthor());
+            if (movie.getOriginalTitle() != null) {
+                authorTextView.setText(movie.getOriginalTitle());
             }
 
-            if (blog.getDate() != null) {
-                dateTextView.setText(blog.getDate());
+            if (movie.getReleaseDate() != null) {
+                dateTextView.setText(movie.getReleaseDate());
             }
 
-            if (blog.getDescription() != null) {
-                contentTextView.setText(blog.getDescription());
+            if (movie.getOverview() != null) {
+                contentTextView.setText(movie.getOverview());
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (blog.getBlogUrl() != null) {
-                        try {
-                            Intent intent = new Intent();
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                            intent.setData(Uri.parse(blog.getBlogUrl()));
-                            itemView.getContext().startActivity(intent);
-                        } catch (Exception e) {
-                            AppLogger.d("url error");
-                        }
-                    }
+                    Toast.makeText(itemView.getContext(), movie.getTitle(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
+
+                    intent.putExtra(DetailActivity.EXTRA_MOVIE, movie);
+
+                    itemView.getContext().startActivity(intent);
+
                 }
             });
         }

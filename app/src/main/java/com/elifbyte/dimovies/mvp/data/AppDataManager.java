@@ -19,38 +19,21 @@ package com.elifbyte.dimovies.mvp.data;
 import android.content.Context;
 
 import com.elifbyte.dimovies.mvp.data.db.DbHelper;
+import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
 import com.elifbyte.dimovies.mvp.data.db.model.Option;
 import com.elifbyte.dimovies.mvp.data.db.model.Question;
 import com.elifbyte.dimovies.mvp.data.db.model.User;
 import com.elifbyte.dimovies.mvp.data.network.ApiHeader;
 import com.elifbyte.dimovies.mvp.data.network.ApiHelper;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginRequest;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResponse;
 import com.elifbyte.dimovies.mvp.data.prefs.PreferencesHelper;
+import com.elifbyte.dimovies.mvp.di.ApplicationContext;
 import com.elifbyte.dimovies.mvp.utils.AppConstants;
 import com.elifbyte.dimovies.mvp.utils.CommonUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
-import com.elifbyte.dimovies.mvp.data.db.DbHelper;
-import com.elifbyte.dimovies.mvp.data.db.model.Option;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
-import com.elifbyte.dimovies.mvp.data.db.model.User;
-import com.elifbyte.dimovies.mvp.data.network.ApiHeader;
-import com.elifbyte.dimovies.mvp.data.network.ApiHelper;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginRequest;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
-import com.elifbyte.dimovies.mvp.data.prefs.PreferencesHelper;
-import com.elifbyte.dimovies.mvp.di.ApplicationContext;
-import com.elifbyte.dimovies.mvp.utils.AppConstants;
-import com.elifbyte.dimovies.mvp.utils.CommonUtils;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -105,6 +88,60 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public Observable<Long> insertFavorite(Favorite favorite) {
+        return mDbHelper.insertFavorite(favorite);
+    }
+
+    @Override
+    public Observable<List<Favorite>> getAllFavorite() {
+        return mDbHelper.getAllFavorite();
+    }
+
+    @Override
+    public Observable<Boolean> saveFavorite(Favorite favorite) {
+        return mDbHelper.saveFavorite(favorite);
+    }
+
+    @Override
+    public Observable<Boolean> saveFavoriteList(List<Favorite> favoriteList) {
+        return mDbHelper.saveFavoriteList(favoriteList);
+    }
+
+    @Override
+    public Observable<Boolean> isFavoriteEmpty() {
+        return mDbHelper.isFavoriteEmpty();
+    }
+
+    @Override
+    public Observable<Boolean> seedDatabaseFavorite() {
+
+        GsonBuilder builder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation();
+        final Gson gson = builder.create();
+
+        return mDbHelper.isFavoriteEmpty()
+                .concatMap(new Function<Boolean, ObservableSource<? extends Boolean>>() {
+                    @Override
+                    public ObservableSource<? extends Boolean> apply(Boolean isEmpty)
+                            throws Exception {
+                        if (isEmpty) {
+                            Type type = new TypeToken<List<Option>>() {
+                            }
+                                    .getType();
+                            List<Favorite> favoriteList = gson.fromJson(
+                                    CommonUtils.loadJSONFromAsset(mContext,
+                                            AppConstants.SEED_DATABASE_FAVORITE),
+                                    type);
+
+                            return saveFavoriteList(favoriteList);
+                        }
+                        return Observable.just(false);
+                    }
+                });
+    }
+
+
+    //    todo: hapus yang g kepake
+    @Override
     public Observable<Long> insertUser(User user) {
         return mDbHelper.insertUser(user);
     }
@@ -114,28 +151,6 @@ public class AppDataManager implements DataManager {
         return mDbHelper.getAllUsers();
     }
 
-    @Override
-    public Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest
-                                                              request) {
-        return mApiHelper.doGoogleLoginApiCall(request);
-    }
-
-    @Override
-    public Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest
-                                                                request) {
-        return mApiHelper.doFacebookLoginApiCall(request);
-    }
-
-    @Override
-    public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest
-                                                              request) {
-        return mApiHelper.doServerLoginApiCall(request);
-    }
-
-    @Override
-    public Single<LogoutResponse> doLogoutApiCall() {
-        return mApiHelper.doLogoutApiCall();
-    }
 
     @Override
     public int getCurrentUserLoggedInMode() {
@@ -223,6 +238,7 @@ public class AppDataManager implements DataManager {
                 null);
     }
 
+    //    todo: hapus yang g kepake
     @Override
     public Observable<Boolean> isQuestionEmpty() {
         return mDbHelper.isQuestionEmpty();
@@ -312,13 +328,25 @@ public class AppDataManager implements DataManager {
                 });
     }
 
+
+    // dimovie api
     @Override
-    public Single<BlogResponse> getBlogApiCall() {
-        return mApiHelper.getBlogApiCall();
+    public Single<MovieResponse> getNowApiCall() {
+        return mApiHelper.getNowApiCall();
     }
 
     @Override
-    public Single<OpenSourceResponse> getOpenSourceApiCall() {
-        return mApiHelper.getOpenSourceApiCall();
+    public Single<MovieResponse> getUpcomingApiCall() {
+        return mApiHelper.getUpcomingApiCall();
+    }
+
+    @Override
+    public Single<MovieResponse> getSearchApiCall(String query) {
+        return mApiHelper.getSearchApiCall(query);
+    }
+
+    @Override
+    public Single<MovieResponse> getDiscoverApiCall() {
+        return null;
     }
 }

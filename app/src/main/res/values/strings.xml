@@ -1,20 +1,5 @@
-<!--
-  ~ Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     https://mindorks.com/license/apache-v2
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License
-  -->
-
-<resources>
-    <string name="app_name">DiMovies2</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">DiMovies3</string>
 
     <!--Toolbar menus-->
     <string name="clear">Clear</string>
@@ -77,7 +62,7 @@
     <string name="submit">Submit</string>
 
     <!--feed-->
-    <string name="title">My Feed</string>
+    <string name="title">Detail</string>
     <string name="open_source">Open Source</string>
     <string name="blog">Blog</string>
 
@@ -87,5 +72,10 @@
     <string name="retry">Retry</string>
     <string name="now_palying">Now Playing</string>
     <string name="upcoming">Upcoming</string>
+    <string name="setting">Setting</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorite">Favorite</string>
 
 </resources>

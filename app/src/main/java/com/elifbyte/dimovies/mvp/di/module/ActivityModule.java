@@ -19,66 +19,39 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
-import com.elifbyte.dimovies.mvp.ui.about.AboutMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.about.AboutPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedPagerAdapter;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogAdapter;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceAdapter;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourcePresenter;
-import com.elifbyte.dimovies.mvp.ui.login.LoginMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.login.LoginPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.MainMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.MainPagerAdapter;
-import com.elifbyte.dimovies.mvp.ui.main.MainPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.now.NowAdapter;
-import com.elifbyte.dimovies.mvp.ui.main.now.NowMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.now.NowMvpView;
-import com.elifbyte.dimovies.mvp.ui.main.now.NowPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingAdapter;
-import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingMvpView;
-import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingPresenter;
-import com.elifbyte.dimovies.mvp.ui.splash.SplashMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.splash.SplashPresenter;
-import com.elifbyte.dimovies.mvp.utils.rx.AppSchedulerProvider;
-import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.di.ActivityContext;
 import com.elifbyte.dimovies.mvp.di.PerActivity;
 import com.elifbyte.dimovies.mvp.ui.about.AboutMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.about.AboutMvpView;
 import com.elifbyte.dimovies.mvp.ui.about.AboutPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedMvpView;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedPagerAdapter;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogAdapter;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogMvpView;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceAdapter;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceMvpView;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourcePresenter;
-import com.elifbyte.dimovies.mvp.ui.login.LoginMvpPresenter;
-import com.elifbyte.dimovies.mvp.ui.login.LoginMvpView;
-import com.elifbyte.dimovies.mvp.ui.login.LoginPresenter;
+import com.elifbyte.dimovies.mvp.ui.favorite.FavoriteAdapter;
+import com.elifbyte.dimovies.mvp.ui.favorite.FavoriteMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.favorite.FavoriteMvpView;
+import com.elifbyte.dimovies.mvp.ui.favorite.FavoritePresenter;
 import com.elifbyte.dimovies.mvp.ui.main.MainMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.main.MainMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.MainPagerAdapter;
 import com.elifbyte.dimovies.mvp.ui.main.MainPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.detail.DetailMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.detail.DetailMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.detail.DetailPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowAdapter;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowPresenter;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogMvpView;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RatingDialogPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.search.SearchAdapter;
+import com.elifbyte.dimovies.mvp.ui.main.search.SearchMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.search.SearchMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.search.SearchPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingAdapter;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingMvpPresenter;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingMvpView;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingPresenter;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashMvpPresenter;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashMvpView;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashPresenter;
@@ -140,13 +113,6 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    LoginMvpPresenter<LoginMvpView> provideLoginPresenter(
-            LoginPresenter<LoginMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    @PerActivity
     MainMvpPresenter<MainMvpView> provideMainPresenter(
             MainPresenter<MainMvpView> presenter) {
         return presenter;
@@ -166,12 +132,12 @@ public class ActivityModule {
 
     @Provides
     NowAdapter provideNowAdapter() {
-        return new NowAdapter(new ArrayList<BlogResponse.Blog>());
+        return new NowAdapter(new ArrayList<MovieResultsItem>());
     }
 
     @Provides
     UpcomingAdapter provideUpcomingAdapter() {
-        return new UpcomingAdapter(new ArrayList<OpenSourceResponse.Repo>());
+        return new UpcomingAdapter(new ArrayList<MovieResultsItem>());
     }
 
     @Provides
@@ -186,40 +152,36 @@ public class ActivityModule {
     }
 
     @Provides
-    FeedMvpPresenter<FeedMvpView> provideFeedPresenter(
-            FeedPresenter<FeedMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    OpenSourceMvpPresenter<OpenSourceMvpView> provideOpenSourcePresenter(
-            OpenSourcePresenter<OpenSourceMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    BlogMvpPresenter<BlogMvpView> provideBlogMvpPresenter(
-            BlogPresenter<BlogMvpView> presenter) {
-        return presenter;
-    }
-
-    @Provides
-    FeedPagerAdapter provideFeedPagerAdapter(AppCompatActivity activity) {
-        return new FeedPagerAdapter(activity.getSupportFragmentManager());
-    }
-
-    @Provides
-    OpenSourceAdapter provideOpenSourceAdapter() {
-        return new OpenSourceAdapter(new ArrayList<OpenSourceResponse.Repo>());
-    }
-
-    @Provides
-    BlogAdapter provideBlogAdapter() {
-        return new BlogAdapter(new ArrayList<BlogResponse.Blog>());
-    }
-
-    @Provides
     LinearLayoutManager provideLinearLayoutManager(AppCompatActivity activity) {
         return new LinearLayoutManager(activity);
     }
+
+    @Provides
+    DetailMvpPresenter<DetailMvpView> provideDetailMvpPresenter(
+            DetailPresenter<DetailMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    SearchMvpPresenter<SearchMvpView> provideSearchMvpPresenter(
+            SearchPresenter<SearchMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    SearchAdapter provideSearchAdapter() {
+        return new SearchAdapter(new ArrayList<MovieResultsItem>());
+    }
+
+    @Provides
+    FavoriteMvpPresenter<FavoriteMvpView> provideFavoriteMvpPresenter(
+            FavoritePresenter<FavoriteMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    FavoriteAdapter provideFavoriteAdapter() {
+        return new FavoriteAdapter(new ArrayList<Favorite>());
+    }
+
 }

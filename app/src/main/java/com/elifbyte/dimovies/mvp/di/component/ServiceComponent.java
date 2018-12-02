@@ -15,7 +15,6 @@
 
 package com.elifbyte.dimovies.mvp.di.component;
 
-import com.elifbyte.dimovies.mvp.service.SyncService;
 import com.elifbyte.dimovies.mvp.di.PerService;
 import com.elifbyte.dimovies.mvp.di.module.ServiceModule;
 import com.elifbyte.dimovies.mvp.service.SyncService;

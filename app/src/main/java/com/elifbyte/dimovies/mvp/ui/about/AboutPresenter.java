@@ -16,8 +16,6 @@
 package com.elifbyte.dimovies.mvp.ui.about;
 
 import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
-import com.elifbyte.dimovies.mvp.data.DataManager;
 import com.elifbyte.dimovies.mvp.ui.base.BasePresenter;
 import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
 

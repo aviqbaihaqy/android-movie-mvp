@@ -15,11 +15,7 @@
 
 package com.elifbyte.dimovies.mvp.ui.main;
 
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
 import com.elifbyte.dimovies.mvp.ui.base.MvpView;
-
-import java.util.List;
 
 /**
  * Created by janisharali on 27/01/17.
@@ -27,13 +23,8 @@ import java.util.List;
 
 public interface MainMvpView extends MvpView {
 
-    void openLoginActivity();
 
     void showAboutFragment();
-
-//    void refreshQuestionnaire(List<Question> questionList);
-
-//    void reloadQuestionnaire(List<Question> questionList);
 
     void updateUserName(String currentUserName);
 
@@ -45,11 +36,13 @@ public interface MainMvpView extends MvpView {
 
     void showRateUsDialog();
 
-    void openMyFeedActivity();
-
     void closeNavigationDrawer();
 
     void lockDrawer();
 
     void unlockDrawer();
+
+    void showFavoriteFragment();
+
+    void showSettingActivity();
 }

@@ -17,7 +17,7 @@ package com.elifbyte.dimovies.mvp.ui.main.now;
 
 import com.androidnetworking.error.ANError;
 import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResponse;
 import com.elifbyte.dimovies.mvp.ui.base.BasePresenter;
 import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
 
@@ -45,15 +45,15 @@ public class NowPresenter<V extends NowMvpView> extends BasePresenter<V>
     public void onViewPrepared() {
         getMvpView().showLoading();
         getCompositeDisposable().add(getDataManager()
-                .getBlogApiCall()
+                .getNowApiCall()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<BlogResponse>() {
+                .subscribe(new Consumer<MovieResponse>() {
                     @Override
-                    public void accept(@NonNull BlogResponse blogResponse)
+                    public void accept(@NonNull MovieResponse movieResponse)
                             throws Exception {
-                        if (blogResponse != null && blogResponse.getData() != null) {
-                            getMvpView().updateBlog(blogResponse.getData());
+                        if (movieResponse != null && movieResponse.getResults() != null) {
+                            getMvpView().updateMovie(movieResponse.getResults());
                         }
                         getMvpView().hideLoading();
                     }

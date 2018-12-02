@@ -15,9 +15,7 @@
 
 package com.elifbyte.dimovies.mvp.data.db;
 
-import com.elifbyte.dimovies.mvp.data.db.model.Option;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
-import com.elifbyte.dimovies.mvp.data.db.model.User;
+import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
 import com.elifbyte.dimovies.mvp.data.db.model.Option;
 import com.elifbyte.dimovies.mvp.data.db.model.Question;
 import com.elifbyte.dimovies.mvp.data.db.model.User;
@@ -26,13 +24,19 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-
-/**
- * Created by janisharali on 08/12/16.
- */
-
 public interface DbHelper {
 
+    Observable<Long> insertFavorite(final Favorite favorite);
+
+    Observable<List<Favorite>> getAllFavorite();
+
+    Observable<Boolean> saveFavorite(Favorite favorite);
+
+    Observable<Boolean> saveFavoriteList(List<Favorite> favoriteList);
+
+    Observable<Boolean> isFavoriteEmpty();
+
+    //    todo: hapus yang g kepake
     Observable<Long> insertUser(final User user);
 
     Observable<List<User>> getAllUsers();
@@ -50,4 +54,5 @@ public interface DbHelper {
     Observable<Boolean> saveQuestionList(List<Question> questionList);
 
     Observable<Boolean> saveOptionList(List<Option> optionList);
+
 }

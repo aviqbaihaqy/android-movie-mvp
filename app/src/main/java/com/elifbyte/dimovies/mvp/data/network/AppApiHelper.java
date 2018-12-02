@@ -15,16 +15,7 @@
 
 package com.elifbyte.dimovies.mvp.data.network;
 
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginRequest;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginRequest;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResponse;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import javax.inject.Inject;
@@ -52,57 +43,30 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest
-                                                              request) {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_GOOGLE_LOGIN)
-                .addHeaders(mApiHeader.getPublicApiHeader())
-                .addBodyParameter(request)
+    public Single<MovieResponse> getNowApiCall() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_NOW_PLAYING)
                 .build()
-                .getObjectSingle(LoginResponse.class);
+                .getObjectSingle(MovieResponse.class);
     }
 
     @Override
-    public Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest
-                                                                request) {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_FACEBOOK_LOGIN)
-                .addHeaders(mApiHeader.getPublicApiHeader())
-                .addBodyParameter(request)
+    public Single<MovieResponse> getUpcomingApiCall() {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_UPCOMING)
                 .build()
-                .getObjectSingle(LoginResponse.class);
+                .getObjectSingle(MovieResponse.class);
     }
 
     @Override
-    public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest
-                                                              request) {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
-                .addHeaders(mApiHeader.getPublicApiHeader())
-                .addBodyParameter(request)
+    public Single<MovieResponse> getSearchApiCall(String query) {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_SEARCH)
+                .addQueryParameter("query", query)
                 .build()
-                .getObjectSingle(LoginResponse.class);
+                .getObjectSingle(MovieResponse.class);
     }
 
     @Override
-    public Single<LogoutResponse> doLogoutApiCall() {
-        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_LOGOUT)
-                .addHeaders(mApiHeader.getProtectedApiHeader())
-                .build()
-                .getObjectSingle(LogoutResponse.class);
-    }
-
-    @Override
-    public Single<BlogResponse> getBlogApiCall() {
-        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_BLOG)
-                .addHeaders(mApiHeader.getProtectedApiHeader())
-                .build()
-                .getObjectSingle(BlogResponse.class);
-    }
-
-    @Override
-    public Single<OpenSourceResponse> getOpenSourceApiCall() {
-        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_OPEN_SOURCE)
-                .addHeaders(mApiHeader.getProtectedApiHeader())
-                .build()
-                .getObjectSingle(OpenSourceResponse.class);
+    public Single<MovieResponse> getDiscoverApiCall() {
+        return null;
     }
 }
 

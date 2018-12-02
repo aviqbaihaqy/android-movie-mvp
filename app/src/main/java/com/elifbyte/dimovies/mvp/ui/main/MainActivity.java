@@ -20,7 +20,7 @@ import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -35,31 +35,16 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
-import com.elifbyte.dimovies.mvp.ui.about.AboutFragment;
-import com.elifbyte.dimovies.mvp.ui.custom.RoundedImageView;
-import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
-import com.elifbyte.dimovies.mvp.ui.main.rating.RateUsDialog;
-import com.elifbyte.dimovies.mvp.utils.ScreenUtils;
 import com.elifbyte.dimovies.mvp.BuildConfig;
 import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
 import com.elifbyte.dimovies.mvp.ui.about.AboutFragment;
 import com.elifbyte.dimovies.mvp.ui.base.BaseActivity;
 import com.elifbyte.dimovies.mvp.ui.custom.RoundedImageView;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedActivity;
-import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
+import com.elifbyte.dimovies.mvp.ui.favorite.FavoriteFragment;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RateUsDialog;
-import com.elifbyte.dimovies.mvp.utils.ScreenUtils;
-import com.mindorks.placeholderview.SwipeDecor;
-import com.mindorks.placeholderview.SwipePlaceHolderView;
-import com.mindorks.placeholderview.listeners.ItemRemovedListener;
-
-import java.util.List;
+import com.elifbyte.dimovies.mvp.ui.main.search.SearchActivity;
 
 import javax.inject.Inject;
 
@@ -95,9 +80,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
-
-    /*@BindView(R.id.cards_container)
-    SwipePlaceHolderView mCardsContainerView;*/
 
     private TextView mNameTextView;
 
@@ -256,6 +238,31 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
+    public void showRateUsDialog() {
+        RateUsDialog.newInstance().show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void showFavoriteFragment() {
+        lockDrawer();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .disallowAddToBackStack()
+                .setCustomAnimations(R.anim.slide_left, R.anim.slide_left)
+                .add(R.id.cl_root_view, FavoriteFragment.newInstance(), FavoriteFragment.TAG)
+                .commit();
+
+    }
+
+    @Override
+    public void showSettingActivity() {
+        lockDrawer();
+        Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+        startActivity(mIntent);
+    }
+
+
+    @Override
     public void lockDrawer() {
         if (mDrawer != null)
             mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -280,9 +287,12 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         if (drawable instanceof Animatable) {
             ((Animatable) drawable).start();
         }
+
         switch (item.getItemId()) {
 
-            case R.id.action_search:
+            case R.id.search:
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -301,8 +311,15 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         mDrawer.closeDrawer(GravityCompat.START);
                         switch (item.getItemId()) {
+                            case R.id.nav_item_favorite:
+                                mPresenter.onDrawerFavoriteClick();
+                                return true;
+                            case R.id.nav_item_setting:
+                                mPresenter.onDrawerSettingClick();
+                                return true;
+
                             case R.id.nav_item_about:
-                                mPresenter.onDrawerOptionAboutClick();
+                                mPresenter.onDrawerAboutClick();
                                 return true;
                             case R.id.nav_item_rate_us:
                                 mPresenter.onDrawerRateUsClick();
@@ -312,22 +329,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                         }
                     }
                 });
-    }
-
-    @Override
-    public void openLoginActivity() {
-        startActivity(LoginActivity.getStartIntent(this));
-        finish();
-    }
-
-    @Override
-    public void showRateUsDialog() {
-        RateUsDialog.newInstance().show(getSupportFragmentManager());
-    }
-
-    @Override
-    public void openMyFeedActivity() {
-        startActivity(FeedActivity.getStartIntent(this));
     }
 
     @Override

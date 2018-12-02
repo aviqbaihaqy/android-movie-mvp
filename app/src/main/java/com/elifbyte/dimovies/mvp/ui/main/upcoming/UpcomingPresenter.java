@@ -17,7 +17,7 @@ package com.elifbyte.dimovies.mvp.ui.main.upcoming;
 
 import com.androidnetworking.error.ANError;
 import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResponse;
 import com.elifbyte.dimovies.mvp.ui.base.BasePresenter;
 import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
 
@@ -45,15 +45,15 @@ public class UpcomingPresenter<V extends UpcomingMvpView> extends BasePresenter<
     public void onViewPrepared() {
         getMvpView().showLoading();
         getCompositeDisposable().add(getDataManager()
-                .getOpenSourceApiCall()
+                .getUpcomingApiCall()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<OpenSourceResponse>() {
+                .subscribe(new Consumer<MovieResponse>() {
                     @Override
-                    public void accept(@NonNull OpenSourceResponse openSourceResponse)
+                    public void accept(@NonNull MovieResponse movieResponse)
                             throws Exception {
-                        if (openSourceResponse != null && openSourceResponse.getData() != null) {
-                            getMvpView().updateRepo(openSourceResponse.getData());
+                        if (movieResponse != null && movieResponse.getResults() != null) {
+                            getMvpView().updateMovie(movieResponse.getResults());
                         }
                         getMvpView().hideLoading();
                     }

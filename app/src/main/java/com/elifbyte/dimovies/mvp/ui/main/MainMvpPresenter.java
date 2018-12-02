@@ -26,17 +26,14 @@ import com.elifbyte.dimovies.mvp.ui.base.MvpPresenter;
 @PerActivity
 public interface MainMvpPresenter<V extends MainMvpView> extends MvpPresenter<V> {
 
-    void onDrawerOptionAboutClick();
 
-    void onDrawerOptionLogoutClick();
+    void onDrawerAboutClick();
 
     void onDrawerRateUsClick();
 
-    void onDrawerMyFeedClick();
-
-    void onViewInitialized();
-
-    void onCardExhausted();
-
     void onNavMenuCreated();
+
+    void onDrawerFavoriteClick();
+
+    void onDrawerSettingClick();
 }

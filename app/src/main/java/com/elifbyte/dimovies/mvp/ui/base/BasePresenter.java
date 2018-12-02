@@ -30,11 +30,6 @@ import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.data.network.model.ApiError;
-import com.elifbyte.dimovies.mvp.utils.AppConstants;
-import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 import javax.net.ssl.HttpsURLConnection;
@@ -135,7 +130,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
                 case HttpsURLConnection.HTTP_UNAUTHORIZED:
                 case HttpsURLConnection.HTTP_FORBIDDEN:
                     setUserAsLoggedOut();
-                    getMvpView().openActivityOnTokenExpire();
+//                    getMvpView().openActivityOnTokenExpire();
                 case HttpsURLConnection.HTTP_INTERNAL_ERROR:
                 case HttpsURLConnection.HTTP_NOT_FOUND:
                 default:

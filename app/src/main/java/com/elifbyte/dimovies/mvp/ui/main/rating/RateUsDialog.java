@@ -27,7 +27,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
-import com.elifbyte.dimovies.mvp.utils.AppUtils;
 import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
 import com.elifbyte.dimovies.mvp.ui.base.BaseDialog;

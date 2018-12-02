@@ -18,7 +18,6 @@ package com.elifbyte.dimovies.mvp.data.prefs;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.elifbyte.dimovies.mvp.utils.AppConstants;
 import com.elifbyte.dimovies.mvp.data.DataManager;
 import com.elifbyte.dimovies.mvp.di.ApplicationContext;
 import com.elifbyte.dimovies.mvp.di.PreferenceInfo;

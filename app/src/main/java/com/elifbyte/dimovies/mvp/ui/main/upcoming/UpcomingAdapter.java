@@ -16,7 +16,6 @@
 package com.elifbyte.dimovies.mvp.ui.main.upcoming;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +23,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.ui.base.BaseViewHolder;
+import com.elifbyte.dimovies.mvp.ui.main.detail.DetailActivity;
 
 import java.util.List;
 
@@ -46,10 +47,10 @@ public class UpcomingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_NORMAL = 1;
 
     private Callback mCallback;
-    private List<OpenSourceResponse.Repo> mOpenSourceResponseList;
+    private List<MovieResultsItem> mMovieResponseList;
 
-    public UpcomingAdapter(List<OpenSourceResponse.Repo> openSourceResponseList) {
-        mOpenSourceResponseList = openSourceResponseList;
+    public UpcomingAdapter(List<MovieResultsItem> movieResponseList) {
+        mMovieResponseList = movieResponseList;
     }
 
     public void setCallback(Callback callback) {
@@ -67,7 +68,7 @@ public class UpcomingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         switch (viewType) {
             case VIEW_TYPE_NORMAL:
                 return new ViewHolder(
-                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_repo_view, parent, false));
+                        LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_view, parent, false));
             case VIEW_TYPE_EMPTY:
             default:
                 return new EmptyViewHolder(
@@ -77,7 +78,7 @@ public class UpcomingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (mOpenSourceResponseList != null && mOpenSourceResponseList.size() > 0) {
+        if (mMovieResponseList != null && mMovieResponseList.size() > 0) {
             return VIEW_TYPE_NORMAL;
         } else {
             return VIEW_TYPE_EMPTY;
@@ -86,15 +87,15 @@ public class UpcomingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (mOpenSourceResponseList != null && mOpenSourceResponseList.size() > 0) {
-            return mOpenSourceResponseList.size();
+        if (mMovieResponseList != null && mMovieResponseList.size() > 0) {
+            return mMovieResponseList.size();
         } else {
             return 1;
         }
     }
 
-    public void addItems(List<OpenSourceResponse.Repo> repoList) {
-        mOpenSourceResponseList.addAll(repoList);
+    public void addItems(List<MovieResultsItem> movieList) {
+        mMovieResponseList.addAll(movieList);
         notifyDataSetChanged();
     }
 
@@ -109,6 +110,12 @@ public class UpcomingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @BindView(R.id.title_text_view)
         TextView titleTextView;
+
+        @BindView(R.id.author_text_view)
+        TextView authorTextView;
+
+        @BindView(R.id.date_text_view)
+        TextView dateTextView;
 
         @BindView(R.id.content_text_view)
         TextView contentTextView;
@@ -127,34 +134,42 @@ public class UpcomingAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         public void onBind(int position) {
             super.onBind(position);
 
-            final OpenSourceResponse.Repo repo = mOpenSourceResponseList.get(position);
+            final MovieResultsItem movie = mMovieResponseList.get(position);
 
-            if (repo.getCoverImgUrl() != null) {
+            if (movie.getPosterPath() != null) {
                 Glide.with(itemView.getContext())
-                        .load(repo.getCoverImgUrl())
+                        .load("https://image.tmdb.org/t/p/w500/" + movie.getPosterPath())
                         .asBitmap()
                         .centerCrop()
                         .into(coverImageView);
             }
 
-            if (repo.getTitle() != null) {
-                titleTextView.setText(repo.getTitle());
+            if (movie.getTitle() != null) {
+                titleTextView.setText(movie.getTitle());
             }
 
-            if (repo.getDescription() != null) {
-                contentTextView.setText(repo.getDescription());
+            if (movie.getOriginalTitle() != null) {
+                authorTextView.setText(movie.getOriginalTitle());
+            }
+
+            if (movie.getReleaseDate() != null) {
+                dateTextView.setText(movie.getReleaseDate());
+            }
+
+            if (movie.getOverview() != null) {
+                contentTextView.setText(movie.getOverview());
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (repo.getProjectUrl() != null) {
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(Uri.parse(repo.getProjectUrl()));
-                        itemView.getContext().startActivity(intent);
-                    }
+                    Toast.makeText(itemView.getContext(), movie.getTitle(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
+
+                    intent.putExtra(DetailActivity.EXTRA_MOVIE, movie);
+
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }

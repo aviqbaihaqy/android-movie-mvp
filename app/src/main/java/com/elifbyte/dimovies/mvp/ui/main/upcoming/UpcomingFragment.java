@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
 import com.elifbyte.dimovies.mvp.ui.base.BaseFragment;
 
@@ -49,12 +49,12 @@ public class UpcomingFragment extends BaseFragment implements
     UpcomingMvpPresenter<UpcomingMvpView> mPresenter;
 
     @Inject
-    UpcomingAdapter mOpenSourceAdapter;
+    UpcomingAdapter mUpcomingAdapter;
 
     @Inject
     LinearLayoutManager mLayoutManager;
 
-    @BindView(R.id.repo_recycler_view)
+    @BindView(R.id.movie_recycler_view)
     RecyclerView mRecyclerView;
 
     public static UpcomingFragment newInstance() {
@@ -68,14 +68,14 @@ public class UpcomingFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_open_source, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie, container, false);
 
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);
             setUnBinder(ButterKnife.bind(this, view));
             mPresenter.onAttach(this);
-            mOpenSourceAdapter.setCallback(this);
+            mUpcomingAdapter.setCallback(this);
         }
         return view;
     }
@@ -85,7 +85,7 @@ public class UpcomingFragment extends BaseFragment implements
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mOpenSourceAdapter);
+        mRecyclerView.setAdapter(mUpcomingAdapter);
 
         mPresenter.onViewPrepared();
     }
@@ -96,8 +96,8 @@ public class UpcomingFragment extends BaseFragment implements
     }
 
     @Override
-    public void updateRepo(List<OpenSourceResponse.Repo> repoList) {
-        mOpenSourceAdapter.addItems(repoList);
+    public void updateMovie(List<MovieResultsItem> movieList) {
+        mUpcomingAdapter.addItems(movieList);
     }
 
     @Override

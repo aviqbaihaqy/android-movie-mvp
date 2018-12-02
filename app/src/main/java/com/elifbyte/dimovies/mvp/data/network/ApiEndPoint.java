@@ -44,16 +44,16 @@ public final class ApiEndPoint {
 
 
     public static final String ENDPOINT_DISCOVER = BuildConfig.BASE_URL
-            + "/discover/movie";
+            + "/discover/movie?api_key="+ BuildConfig.API_KEY +"&language=en-US";
 
     public static final String ENDPOINT_SEARCH = BuildConfig.BASE_URL
-            + "/search/movie";
+            + "/search/movie?api_key="+ BuildConfig.API_KEY +"&language=en-US";
 
     public static final String ENDPOINT_NOW_PLAYING = BuildConfig.BASE_URL
-            + "/movie/now_playing";
+            + "/movie/now_playing?api_key="+ BuildConfig.API_KEY +"&language=en-US";
 
     public static final String ENDPOINT_UPCOMING= BuildConfig.BASE_URL
-            + "/movie/upcoming";
+            + "/movie/upcoming?api_key="+ BuildConfig.API_KEY +"&language=en-US";
 
     private ApiEndPoint() {
         // This class is not publicly instantiable

@@ -15,9 +15,9 @@
 
 package com.elifbyte.dimovies.mvp.data.network;
 
+import com.elifbyte.dimovies.mvp.di.ApiInfo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.elifbyte.dimovies.mvp.di.ApiInfo;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

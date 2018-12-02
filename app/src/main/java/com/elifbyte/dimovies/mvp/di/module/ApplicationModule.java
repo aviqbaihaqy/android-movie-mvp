@@ -18,18 +18,7 @@ package com.elifbyte.dimovies.mvp.di.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.elifbyte.dimovies.mvp.data.AppDataManager;
-import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.data.db.AppDbHelper;
-import com.elifbyte.dimovies.mvp.data.db.DbHelper;
-import com.elifbyte.dimovies.mvp.data.network.ApiHeader;
-import com.elifbyte.dimovies.mvp.data.network.ApiHelper;
-import com.elifbyte.dimovies.mvp.data.network.AppApiHelper;
-import com.elifbyte.dimovies.mvp.data.prefs.AppPreferencesHelper;
-import com.elifbyte.dimovies.mvp.data.prefs.PreferencesHelper;
-import com.elifbyte.dimovies.mvp.utils.AppConstants;
 import com.elifbyte.dimovies.mvp.BuildConfig;
-import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.data.AppDataManager;
 import com.elifbyte.dimovies.mvp.data.DataManager;
 import com.elifbyte.dimovies.mvp.data.db.AppDbHelper;

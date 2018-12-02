@@ -118,13 +118,6 @@ public abstract class BaseDialog extends DialogFragment implements DialogMvpView
         }
     }
 
-    @Override
-    public void openActivityOnTokenExpire() {
-        if (mActivity != null) {
-            mActivity.openActivityOnTokenExpire();
-        }
-    }
-
     public BaseActivity getBaseActivity() {
         return mActivity;
     }

@@ -18,8 +18,6 @@ package com.elifbyte.dimovies.mvp.di.component;
 import android.app.Application;
 import android.content.Context;
 
-import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.service.SyncService;
 import com.elifbyte.dimovies.mvp.MvpApp;
 import com.elifbyte.dimovies.mvp.data.DataManager;
 import com.elifbyte.dimovies.mvp.di.ApplicationContext;

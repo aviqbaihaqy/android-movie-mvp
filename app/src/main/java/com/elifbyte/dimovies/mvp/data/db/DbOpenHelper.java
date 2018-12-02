@@ -17,7 +17,6 @@ package com.elifbyte.dimovies.mvp.data.db;
 
 import android.content.Context;
 
-import com.elifbyte.dimovies.mvp.utils.AppLogger;
 import com.elifbyte.dimovies.mvp.data.db.model.DaoMaster;
 import com.elifbyte.dimovies.mvp.di.ApplicationContext;
 import com.elifbyte.dimovies.mvp.di.DatabaseInfo;
@@ -28,9 +27,6 @@ import org.greenrobot.greendao.database.Database;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * Created by janisharali on 08/12/16.
- */
 
 @Singleton
 public class DbOpenHelper extends DaoMaster.OpenHelper {

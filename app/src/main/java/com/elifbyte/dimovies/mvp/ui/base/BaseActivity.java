@@ -31,15 +31,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
-import com.elifbyte.dimovies.mvp.utils.CommonUtils;
-import com.elifbyte.dimovies.mvp.utils.NetworkUtils;
 import com.elifbyte.dimovies.mvp.MvpApp;
 import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
 import com.elifbyte.dimovies.mvp.di.component.DaggerActivityComponent;
 import com.elifbyte.dimovies.mvp.di.module.ActivityModule;
-import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
 import com.elifbyte.dimovies.mvp.utils.CommonUtils;
 import com.elifbyte.dimovies.mvp.utils.NetworkUtils;
 
@@ -164,12 +160,6 @@ public abstract class BaseActivity extends AppCompatActivity
                     getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
-
-    @Override
-    public void openActivityOnTokenExpire() {
-        startActivity(LoginActivity.getStartIntent(this));
-        finish();
     }
 
     public void setUnBinder(Unbinder unBinder) {

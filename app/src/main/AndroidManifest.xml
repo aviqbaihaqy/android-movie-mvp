@@ -39,10 +39,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.elifbyte.dimovies.mvp.ui.login.LoginActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.elifbyte.dimovies.mvp.ui.main.MainActivity"
@@ -50,7 +46,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.elifbyte.dimovies.mvp.ui.feed.FeedActivity"
+            android:name="com.elifbyte.dimovies.mvp.ui.main.detail.DetailActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.main.MainActivity"
             android:screenOrientation="portrait">
@@ -59,6 +55,23 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="com.elifbyte.dimovies.mvp.ui.main.search.SearchActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.main.MainActivity"
+                android:resource="@xml/searchable" />
         </activity>
 
     </application>

@@ -15,23 +15,13 @@
 
 package com.elifbyte.dimovies.mvp.ui.main;
 
-import com.androidnetworking.error.ANError;
 import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
-import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
 import com.elifbyte.dimovies.mvp.ui.base.BasePresenter;
 import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 
 
 /**
@@ -51,87 +41,29 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
     }
 
 
+
     @Override
-    public void onDrawerOptionAboutClick() {
+    public void onDrawerAboutClick() {
         getMvpView().closeNavigationDrawer();
         getMvpView().showAboutFragment();
     }
 
     @Override
-    public void onDrawerOptionLogoutClick() {
-        getMvpView().showLoading();
-
-        getCompositeDisposable().add(getDataManager().doLogoutApiCall()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<LogoutResponse>() {
-                    @Override
-                    public void accept(LogoutResponse response) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-
-                        getDataManager().setUserAsLoggedOut();
-                        getMvpView().hideLoading();
-                        getMvpView().openLoginActivity();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-
-                        getMvpView().hideLoading();
-
-                        // handle the login error here
-                        if (throwable instanceof ANError) {
-                            ANError anError = (ANError) throwable;
-                            handleApiError(anError);
-                        }
-                    }
-                }));
-
+    public void onDrawerRateUsClick() {
+        getMvpView().closeNavigationDrawer();
+        getMvpView().showRateUsDialog();
     }
 
     @Override
-    public void onViewInitialized() {
-        getCompositeDisposable().add(getDataManager()
-                .getAllQuestions()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<List<Question>>() {
-                    @Override
-                    public void accept(List<Question> questionList) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-
-                        /*if (questionList != null) {
-                            getMvpView().refreshQuestionnaire(questionList);
-                        }*/
-                    }
-                }));
+    public void onDrawerFavoriteClick() {
+        getMvpView().closeNavigationDrawer();
+        getMvpView().showFavoriteFragment();
     }
 
     @Override
-    public void onCardExhausted() {
-        getCompositeDisposable().add(getDataManager()
-                .getAllQuestions()
-                .subscribeOn(getSchedulerProvider().io())
-                .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<List<Question>>() {
-                    @Override
-                    public void accept(List<Question> questionList) throws Exception {
-                        if (!isViewAttached()) {
-                            return;
-                        }
-
-                        /*if (questionList != null) {
-                            getMvpView().reloadQuestionnaire(questionList);
-                        }*/
-                    }
-                }));
+    public void onDrawerSettingClick() {
+        getMvpView().closeNavigationDrawer();
+        getMvpView().showSettingActivity();
     }
 
     @Override
@@ -157,15 +89,5 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V>
         }
     }
 
-    @Override
-    public void onDrawerRateUsClick() {
-        getMvpView().closeNavigationDrawer();
-        getMvpView().showRateUsDialog();
-    }
 
-    @Override
-    public void onDrawerMyFeedClick() {
-        getMvpView().closeNavigationDrawer();
-        getMvpView().openMyFeedActivity();
-    }
 }

@@ -23,8 +23,6 @@ import com.elifbyte.dimovies.mvp.ui.base.MvpView;
 
 public interface SplashMvpView extends MvpView {
 
-    void openLoginActivity();
-
     void openMainActivity();
 
     void startSyncService();

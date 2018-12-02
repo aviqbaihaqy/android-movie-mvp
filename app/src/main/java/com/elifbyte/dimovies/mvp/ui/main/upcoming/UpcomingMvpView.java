@@ -15,7 +15,7 @@
 
 package com.elifbyte.dimovies.mvp.ui.main.upcoming;
 
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.ui.base.MvpView;
 
 import java.util.List;
@@ -26,5 +26,5 @@ import java.util.List;
 
 public interface UpcomingMvpView extends MvpView {
 
-    void updateRepo(List<OpenSourceResponse.Repo> repoList);
+    void updateMovie(List<MovieResultsItem> movieList);
 }

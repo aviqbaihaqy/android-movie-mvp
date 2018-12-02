@@ -15,25 +15,16 @@
 
 package com.elifbyte.dimovies.mvp.di.component;
 
-import com.elifbyte.dimovies.mvp.ui.about.AboutFragment;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedActivity;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogFragment;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceFragment;
-import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
-import com.elifbyte.dimovies.mvp.ui.main.MainActivity;
-import com.elifbyte.dimovies.mvp.ui.main.now.NowFragment;
-import com.elifbyte.dimovies.mvp.ui.main.rating.RateUsDialog;
-import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingFragment;
-import com.elifbyte.dimovies.mvp.ui.splash.SplashActivity;
 import com.elifbyte.dimovies.mvp.di.PerActivity;
 import com.elifbyte.dimovies.mvp.di.module.ActivityModule;
 import com.elifbyte.dimovies.mvp.ui.about.AboutFragment;
-import com.elifbyte.dimovies.mvp.ui.feed.FeedActivity;
-import com.elifbyte.dimovies.mvp.ui.feed.blogs.BlogFragment;
-import com.elifbyte.dimovies.mvp.ui.feed.opensource.OpenSourceFragment;
-import com.elifbyte.dimovies.mvp.ui.login.LoginActivity;
+import com.elifbyte.dimovies.mvp.ui.favorite.FavoriteFragment;
 import com.elifbyte.dimovies.mvp.ui.main.MainActivity;
+import com.elifbyte.dimovies.mvp.ui.main.detail.DetailActivity;
+import com.elifbyte.dimovies.mvp.ui.main.now.NowFragment;
 import com.elifbyte.dimovies.mvp.ui.main.rating.RateUsDialog;
+import com.elifbyte.dimovies.mvp.ui.main.search.SearchActivity;
+import com.elifbyte.dimovies.mvp.ui.main.upcoming.UpcomingFragment;
 import com.elifbyte.dimovies.mvp.ui.splash.SplashActivity;
 
 import dagger.Component;
@@ -52,19 +43,16 @@ public interface ActivityComponent {
 
     void inject(UpcomingFragment fragment);
 
-    void inject(LoginActivity activity);
-
     void inject(SplashActivity activity);
 
-    void inject(FeedActivity activity);
+    void inject(DetailActivity activity);
+
+    void inject(SearchActivity activity);
 
     void inject(AboutFragment fragment);
 
-    void inject(OpenSourceFragment fragment);
-
-    void inject(BlogFragment fragment);
-
     void inject(RateUsDialog dialog);
 
+    void inject(FavoriteFragment fragment);
 
 }

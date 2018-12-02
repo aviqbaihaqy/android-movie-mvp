@@ -17,11 +17,11 @@ package com.elifbyte.dimovies.mvp.data;
 
 
 import com.elifbyte.dimovies.mvp.data.db.DbHelper;
+import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
 import com.elifbyte.dimovies.mvp.data.network.ApiHelper;
 import com.elifbyte.dimovies.mvp.data.prefs.PreferencesHelper;
-import com.elifbyte.dimovies.mvp.data.db.DbHelper;
-import com.elifbyte.dimovies.mvp.data.network.ApiHelper;
-import com.elifbyte.dimovies.mvp.data.prefs.PreferencesHelper;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -31,6 +31,7 @@ import io.reactivex.Observable;
 
 public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
 
+
     void updateApiHeader(Long userId, String accessToken);
 
     void setUserAsLoggedOut();
@@ -38,6 +39,8 @@ public interface DataManager extends DbHelper, PreferencesHelper, ApiHelper {
     Observable<Boolean> seedDatabaseQuestions();
 
     Observable<Boolean> seedDatabaseOptions();
+
+    Observable<Boolean> seedDatabaseFavorite();
 
     void updateUserInfo(
             String accessToken,

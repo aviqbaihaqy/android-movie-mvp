@@ -15,16 +15,7 @@
 
 package com.elifbyte.dimovies.mvp.data.network;
 
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginRequest;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginRequest;
-import com.elifbyte.dimovies.mvp.data.network.model.LoginResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.LogoutResponse;
-import com.elifbyte.dimovies.mvp.data.network.model.OpenSourceResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResponse;
 
 import io.reactivex.Single;
 
@@ -36,24 +27,10 @@ public interface ApiHelper {
 
     ApiHeader getApiHeader();
 
-    Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest request);
-
-    Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest request);
-
-    Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest request);
-
-    Single<LogoutResponse> doLogoutApiCall();
-
-    Single<BlogResponse> getBlogApiCall();
-
-    Single<OpenSourceResponse> getOpenSourceApiCall();
-
-
-
-    Single<NowResponse> getNowApiCall();
-    Single<UpcomingResponse> getUpcomingApiCall();
-    Single<DiscoverResponse> getDiscoverApiCall();
-    Single<SearchResponse> getSearchApiCall();
+    Single<MovieResponse> getNowApiCall();
+    Single<MovieResponse> getUpcomingApiCall();
+    Single<MovieResponse> getDiscoverApiCall();
+    Single<MovieResponse> getSearchApiCall(String query);
 
 
 }

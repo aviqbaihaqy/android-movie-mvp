@@ -16,8 +16,6 @@
 package com.elifbyte.dimovies.mvp.ui.main.rating;
 
 
-import com.elifbyte.dimovies.mvp.data.DataManager;
-import com.elifbyte.dimovies.mvp.utils.rx.SchedulerProvider;
 import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.data.DataManager;
 import com.elifbyte.dimovies.mvp.ui.base.BasePresenter;

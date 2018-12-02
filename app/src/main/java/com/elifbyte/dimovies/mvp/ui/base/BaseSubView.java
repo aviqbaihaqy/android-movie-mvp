@@ -108,13 +108,6 @@ public abstract class BaseSubView extends ViewGroup implements SubMvpView {
         return false;
     }
 
-    @Override
-    public void openActivityOnTokenExpire() {
-        if (mParentMvpView != null) {
-            mParentMvpView.openActivityOnTokenExpire();
-        }
-    }
-
     protected abstract void bindViewsAndSetOnClickListeners();
 
     protected abstract void setUp();

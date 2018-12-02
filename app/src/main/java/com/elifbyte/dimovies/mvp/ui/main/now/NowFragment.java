@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.elifbyte.dimovies.mvp.R;
-import com.elifbyte.dimovies.mvp.data.network.model.BlogResponse;
+import com.elifbyte.dimovies.mvp.data.network.model.MovieResultsItem;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
 import com.elifbyte.dimovies.mvp.ui.base.BaseFragment;
 
@@ -54,7 +54,7 @@ public class NowFragment extends BaseFragment implements
     @Inject
     LinearLayoutManager mLayoutManager;
 
-    @BindView(R.id.blog_recycler_view)
+    @BindView(R.id.movie_recycler_view)
     RecyclerView mRecyclerView;
 
     public static NowFragment newInstance() {
@@ -68,7 +68,7 @@ public class NowFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_blog, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie, container, false);
 
         ActivityComponent component = getActivityComponent();
         if (component != null) {
@@ -96,8 +96,8 @@ public class NowFragment extends BaseFragment implements
     }
 
     @Override
-    public void updateBlog(List<BlogResponse.Blog> blogList) {
-        mNowAdapter.addItems(blogList);
+    public void updateMovie(List<MovieResultsItem> movieList) {
+        mNowAdapter.addItems(movieList);
     }
 
     @Override

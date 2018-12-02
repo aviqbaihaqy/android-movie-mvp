@@ -23,7 +23,6 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.elifbyte.dimovies.mvp.utils.CommonUtils;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
 import com.elifbyte.dimovies.mvp.utils.CommonUtils;
 
@@ -120,13 +119,6 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     public void hideKeyboard() {
         if (mActivity != null) {
             mActivity.hideKeyboard();
-        }
-    }
-
-    @Override
-    public void openActivityOnTokenExpire() {
-        if (mActivity != null) {
-            mActivity.openActivityOnTokenExpire();
         }
     }
 
