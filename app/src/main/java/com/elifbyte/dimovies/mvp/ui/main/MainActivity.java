@@ -301,9 +301,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     void setupNavMenu() {
         View headerLayout = mNavigationView.getHeaderView(0);
-        mProfileImageView = (RoundedImageView) headerLayout.findViewById(R.id.iv_profile_pic);
-        mNameTextView = (TextView) headerLayout.findViewById(R.id.tv_name);
-        mEmailTextView = (TextView) headerLayout.findViewById(R.id.tv_email);
+        mProfileImageView = headerLayout.findViewById(R.id.iv_profile_pic);
+        mNameTextView = headerLayout.findViewById(R.id.tv_name);
+        mEmailTextView = headerLayout.findViewById(R.id.tv_email);
 
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {

@@ -1,118 +1,99 @@
 [
   {
-    "vote_count": 2613,
-    "id": 335983,
-    "video": false,
-    "vote_average": 6.5,
-    "title": "Venom",
-    "popularity": 503.845,
-    "poster_path": "/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
-    "original_language": "en",
-    "original_title": "Venom",
-    "genre_ids": [
+    "vote_count": 0,
+    "movieId": 503314,
+    "vmovieIdeo": false,
+    "voteAverage": 0,
+    "title": "Dragon Ball Super: Broly",
+    "popularity": 33.337,
+    "posterPath": "/518jdIQHCZmYqIcNCaqbZuDRheV.jpg",
+    "originalLanguage": "ja",
+    "originalTitle": "Dragon Ball Super: Broly",
+    "genreMovieIds": [
+      28,
+      16,
       878
     ],
-    "backdrop_path": "/VuukZLgaCrho2Ar8Scl9HtV3yD.jpg",
+    "backdropPath": "/6OTRuxpwUUGbmCX3MKP25dOmo59.jpg",
     "adult": false,
-    "overview": "Eddie Brock is a reporter—investigating people who want to go unnoticed. But after he makes a terrible discovery at the Life Foundation, he begins to transform into ‘Venom’.  The Foundation has discovered creatures called symbiotes, and believes they’re the key to the next step in human evolution. Unwittingly bonded with one, Eddie discovers he has incredible new abilities—and a voice in his head that’s telling him to embrace the darkness.",
-    "release_date": "2018-10-03"
+    "overview": "Earth is peaceful following the Tournament of Power. Realizing that the universes still hold many more strong people yet to see, Goku spends all his days training to reach even greater heights. Then one day, Goku and Vegeta are faced by a Saiyan called 'Broly' who they've never seen before. The Saiyans were supposed to have been almost completely wiped out in the destruction of Planet Vegeta, so what's this one doing on Earth? This encounter between the three Saiyans who have followed completely different destinies turns into a stupendous battle, with even Frieza (back from Hell) getting caught up in the mix.",
+    "releaseDate": "2018-12-14"
   },
   {
-    "vote_count": 1643,
-    "id": 338952,
-    "video": false,
-    "vote_average": 7,
-    "title": "Fantastic Beasts: The Crimes of Grindelwald",
-    "popularity": 271.316,
-    "poster_path": "/uyJgTzAsp3Za2TaPiZt2yaKYRIR.jpg",
-    "original_language": "en",
-    "original_title": "Fantastic Beasts: The Crimes of Grindelwald",
-    "genre_ids": [
-      10751,
-      14,
-      12
+    "vote_count": 0,
+    "movieId": 428078,
+    "vmovieIdeo": false,
+    "voteAverage": 0,
+    "title": "Mortal Engines",
+    "popularity": 31.397,
+    "posterPath": "/gLhYg9NIvIPKVRTtvzCWnp1qJWG.jpg",
+    "originalLanguage": "en",
+    "originalTitle": "Mortal Engines",
+    "genreMovieIds": [
+      878
     ],
-    "backdrop_path": "/xgbeBCjmFpRYHDF7tQ7U98EREWp.jpg",
+    "backdropPath": "/rxYG6Sj95as9rv9wKIHUx6ATWd3.jpg",
     "adult": false,
-    "overview": "Gellert Grindelwald has escaped imprisonment and has begun gathering followers to his cause—elevating wizards above all non-magical beings. The only one capable of putting a stop to him is the wizard he once called his closest friend, Albus Dumbledore. However, Dumbledore will need to seek help from the wizard who had thwarted Grindelwald once before, his former student Newt Scamander, who agrees to help, unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.",
-    "release_date": "2018-11-14"
+    "overview": "Set in a world many thousands of years in the future. Earth’s cities now roam the globe on huge wheels, devouring each other in a struggle for ever diminishing resources. On one of these massive Traction Cities, Tom Natsworthy has an unexpected encounter with a mysterious young woman from the Outlands who will change the course of his life forever.",
+    "releaseDate": "2018-12-06"
   },
   {
-    "vote_count": 79,
-    "id": 507569,
-    "video": false,
-    "vote_average": 6,
-    "title": "The Seven Deadly Sins: Prisoners of the Sky",
-    "popularity": 260.295,
-    "poster_path": "/r6pPUVUKU5eIpYj4oEzidk5ZibB.jpg",
-    "original_language": "ja",
-    "original_title": "劇場版 七つの大罪 天空の囚われ人",
-    "genre_ids": [
+    "vote_count": 7,
+    "movieId": 461928,
+    "vmovieIdeo": false,
+    "voteAverage": 2.3,
+    "title": "Anna and the Apocalypse",
+    "popularity": 30.325,
+    "posterPath": "/pb60xSzUnS9D5iDvrV8N6QOG3ZR.jpg",
+    "originalLanguage": "en",
+    "originalTitle": "Anna and the Apocalypse",
+    "genreMovieIds": [
+      27,
+      35
+    ],
+    "backdropPath": "/7GR03LqwB7ePPPhaK5BAYNzt3Vm.jpg",
+    "adult": false,
+    "overview": "A zombie apocalypse threatens the sleepy town of Little Haven – at Christmas – forcing Anna and her friends to fight, slash and sing their way to survival, facing the undead in a desperate race to reach their loved ones. But they soon discover that no one is safe in this new world, and with civilization falling apart around them, the only people they can truly rely on are each other.",
+    "releaseDate": "2018-11-30"
+  },
+  {
+    "vote_count": 275,
+    "movieId": 460885,
+    "vmovieIdeo": false,
+    "voteAverage": 6.3,
+    "title": "Mandy",
+    "popularity": 29.075,
+    "posterPath": "/m0yf7J7HsKeK6E81SMRcX8vx6mH.jpg",
+    "originalLanguage": "en",
+    "originalTitle": "Mandy",
+    "genreMovieIds": [
       28,
-      12,
-      14,
-      16
+      53,
+      27
     ],
-    "backdrop_path": "/uKwOX7MtKlAaGeCQe6c4jc1vZpj.jpg",
+    "backdropPath": "/tNa19CK0CQZl5rxZ35QRdKAT2s0.jpg",
     "adult": false,
-    "overview": "Traveling in search of the rare ingredient, “sky fish”  Meliodas and Hawk arrive at a palace that floats above the clouds. The people there are busy preparing a ceremony, meant to protect their home from a ferocious beast that awakens once every 3,000 years. But before the ritual is complete, the Six Knights of Black—a Demon Clan army—removes the seal on the beast, threatening the lives of everyone in the Sky Palace.",
-    "release_date": "2018-08-18"
+    "overview": "The Shadow Mountains, 1983. Red and Mandy lead a loving and peaceful existence; but when their pine-scented haven is savagely destroyed, Red is catapulted into a phantasmagoric journey filled with bloody vengeance and laced with fire.",
+    "releaseDate": "2018-09-13"
   },
   {
-    "vote_count": 106,
-    "id": 375588,
-    "video": false,
-    "vote_average": 6.3,
-    "title": "Robin Hood",
-    "popularity": 258.285,
-    "poster_path": "/AiRfixFcfTkNbn2A73qVJPlpkUo.jpg",
-    "original_language": "en",
-    "original_title": "Robin Hood",
-    "genre_ids": [
-      12,
-      28
+    "vote_count": 34,
+    "movieId": 531593,
+    "vmovieIdeo": false,
+    "voteAverage": 4.7,
+    "title": "Reprisal",
+    "popularity": 27.654,
+    "posterPath": "/qBsQUK5QSeZjRPLFUVgSGHxj2PI.jpg",
+    "originalLanguage": "en",
+    "originalTitle": "Reprisal",
+    "genreMovieIds": [
+      28,
+      53,
+      80
     ],
-    "backdrop_path": "/AuA50D7T7S7OEVcGo0ZKaMhERn0.jpg",
+    "backdropPath": "/apfur3XEQhEoKxb7tc1PvwvYe5B.jpg",
     "adult": false,
-    "overview": "A war-hardened Crusader and his Moorish commander mount an audacious revolt against the corrupt English crown.",
-    "release_date": "2018-11-20"
-  },
-  {
-    "vote_count": 1635,
-    "id": 424694,
-    "video": false,
-    "vote_average": 8.2,
-    "title": "Bohemian Rhapsody",
-    "popularity": 208.487,
-    "poster_path": "/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
-    "original_language": "en",
-    "original_title": "Bohemian Rhapsody",
-    "genre_ids": [
-      18,
-      10402
-    ],
-    "backdrop_path": "/pbXgLEYh8rlG2Km5IGZPnhcnuSz.jpg",
-    "adult": false,
-    "overview": "Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.",
-    "release_date": "2018-10-24"
-  },
-  {
-    "vote_count": 101,
-    "id": 404368,
-    "video": false,
-    "vote_average": 7.4,
-    "title": "Ralph Breaks the Internet",
-    "popularity": 168.598,
-    "poster_path": "/m110vLaDDOCca4hfOcS5mK5cDke.jpg",
-    "original_language": "en",
-    "original_title": "Ralph Breaks the Internet",
-    "genre_ids": [
-      10751,
-      16
-    ],
-    "backdrop_path": "/ivhK1NjnFji6lD5dkAThSzd3Mgq.jpg",
-    "adult": false,
-    "overview": "Taking place six years following the events of the first film, the story will center on Ralph's adventures in the Internet data space when a Wi-Fi router gets plugged into the arcade as he must find a replacement part to fix Sugar Rush.",
-    "release_date": "2018-11-20"
+    "overview": "Jacob, a bank manager haunted by a violent heist that took the life of a coworker, teams up with his ex-cop neighbor, James, to bring down the assailant. While the two men work together to figure out the thief’s next move, Gabriel, the highly-trained criminal, is one step ahead. When Gabriel kmovieIdnaps Jacob’s wife and daughter, Jacob barrels down a path of bloodshed that initiates an explosive counterattack and brings all three men to the breaking point.",
+    "releaseDate": "2018-08-31"
   }
 ]

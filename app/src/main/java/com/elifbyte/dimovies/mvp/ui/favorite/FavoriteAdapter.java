@@ -1,7 +1,6 @@
 package com.elifbyte.dimovies.mvp.ui.favorite;
 
 import android.content.Intent;
-import android.os.Parcel;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;

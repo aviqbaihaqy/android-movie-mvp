@@ -18,9 +18,8 @@ package com.elifbyte.dimovies.mvp.data.db;
 import com.elifbyte.dimovies.mvp.data.db.model.DaoMaster;
 import com.elifbyte.dimovies.mvp.data.db.model.DaoSession;
 import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
-import com.elifbyte.dimovies.mvp.data.db.model.Option;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
 import com.elifbyte.dimovies.mvp.data.db.model.User;
+import com.elifbyte.dimovies.mvp.data.provider.FavoriteProvider;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -38,13 +37,14 @@ public class AppDbHelper implements DbHelper {
     @Inject
     public AppDbHelper(DbOpenHelper dbOpenHelper) {
         mDaoSession = new DaoMaster(dbOpenHelper.getWritableDb()).newSession();
+        FavoriteProvider.daoSession = mDaoSession;
     }
 
     @Override
     public Observable<Long> insertFavorite(final Favorite favorite) {
         return Observable.fromCallable(new Callable<Long>() {
             @Override
-            public Long call() throws Exception {
+            public Long call() {
                 return mDaoSession.getFavoriteDao().insert(favorite);
             }
         });
@@ -54,7 +54,7 @@ public class AppDbHelper implements DbHelper {
     public Observable<List<Favorite>> getAllFavorite() {
         return Observable.fromCallable(new Callable<List<Favorite>>() {
             @Override
-            public List<Favorite> call() throws Exception {
+            public List<Favorite> call() {
                 return mDaoSession.getFavoriteDao().loadAll();
             }
         });
@@ -64,7 +64,7 @@ public class AppDbHelper implements DbHelper {
     public Observable<Boolean> saveFavorite(final Favorite favorite) {
         return Observable.fromCallable(new Callable<Boolean>() {
             @Override
-            public Boolean call() throws Exception {
+            public Boolean call() {
                 mDaoSession.getFavoriteDao().insertInTx(favorite);
                 return true;
             }
@@ -75,7 +75,7 @@ public class AppDbHelper implements DbHelper {
     public Observable<Boolean> saveFavoriteList(final List<Favorite> favoriteList) {
         return Observable.fromCallable(new Callable<Boolean>() {
             @Override
-            public Boolean call() throws Exception {
+            public Boolean call() {
                 mDaoSession.getFavoriteDao().insertInTx(favoriteList);
                 return true;
             }
@@ -86,18 +86,17 @@ public class AppDbHelper implements DbHelper {
     public Observable<Boolean> isFavoriteEmpty() {
         return Observable.fromCallable(new Callable<Boolean>() {
             @Override
-            public Boolean call() throws Exception {
+            public Boolean call() {
                 return !(mDaoSession.getFavoriteDao().count() > 0);
             }
         });
     }
 
-    //    todo: hapus yang g kepake
     @Override
     public Observable<Long> insertUser(final User user) {
         return Observable.fromCallable(new Callable<Long>() {
             @Override
-            public Long call() throws Exception {
+            public Long call() {
                 return mDaoSession.getUserDao().insert(user);
             }
         });
@@ -107,83 +106,10 @@ public class AppDbHelper implements DbHelper {
     public Observable<List<User>> getAllUsers() {
         return Observable.fromCallable(new Callable<List<User>>() {
             @Override
-            public List<User> call() throws Exception {
+            public List<User> call() {
                 return mDaoSession.getUserDao().loadAll();
             }
         });
     }
 
-    @Override
-    public Observable<List<Question>> getAllQuestions() {
-        return Observable.fromCallable(new Callable<List<Question>>() {
-            @Override
-            public List<Question> call() throws Exception {
-                return mDaoSession.getQuestionDao().loadAll();
-            }
-        });
-    }
-
-    @Override
-    public Observable<Boolean> isQuestionEmpty() {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                return !(mDaoSession.getQuestionDao().count() > 0);
-            }
-        });
-    }
-
-    @Override
-    public Observable<Boolean> isOptionEmpty() {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                return !(mDaoSession.getOptionDao().count() > 0);
-            }
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveQuestion(final Question question) {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                mDaoSession.getQuestionDao().insert(question);
-                return true;
-            }
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveOption(final Option option) {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                mDaoSession.getOptionDao().insertInTx(option);
-                return true;
-            }
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveQuestionList(final List<Question> questionList) {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                mDaoSession.getQuestionDao().insertInTx(questionList);
-                return true;
-            }
-        });
-    }
-
-    @Override
-    public Observable<Boolean> saveOptionList(final List<Option> optionList) {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                mDaoSession.getOptionDao().insertInTx(optionList);
-                return true;
-            }
-        });
-    }
 }

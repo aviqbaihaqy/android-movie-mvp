@@ -32,8 +32,7 @@ public class FavoritePresenter<V extends FavoriteMvpView>  extends BasePresenter
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(new Consumer<List<Favorite>>() {
                     @Override
-                    public void accept(List<Favorite> favoriteList)
-                            throws Exception {
+                    public void accept(List<Favorite> favoriteList) {
                         if (favoriteList != null) {
                             getMvpView().updatFavorite(favoriteList);
                         }
@@ -41,8 +40,7 @@ public class FavoritePresenter<V extends FavoriteMvpView>  extends BasePresenter
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(@NonNull Throwable throwable)
-                            throws Exception {
+                    public void accept(@NonNull Throwable throwable) {
                         if (!isViewAttached()) {
                             return;
                         }

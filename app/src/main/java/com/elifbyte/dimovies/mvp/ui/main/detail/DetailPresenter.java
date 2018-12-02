@@ -15,8 +15,6 @@
 
 package com.elifbyte.dimovies.mvp.ui.main.detail;
 
-import android.widget.Toast;
-
 import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.data.DataManager;
 import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
@@ -55,7 +53,7 @@ public class DetailPresenter<V extends MvpView> extends BasePresenter<V> impleme
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(new Consumer<Boolean>() {
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
+                    public void accept(Boolean aBoolean) {
                         if (!isViewAttached()) {
                             return;
                         }
@@ -63,7 +61,7 @@ public class DetailPresenter<V extends MvpView> extends BasePresenter<V> impleme
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Exception {
+                    public void accept(Throwable throwable) {
                         if (!isViewAttached()) {
                             return;
                         }

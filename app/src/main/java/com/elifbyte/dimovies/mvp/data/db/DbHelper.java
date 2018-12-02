@@ -16,8 +16,6 @@
 package com.elifbyte.dimovies.mvp.data.db;
 
 import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
-import com.elifbyte.dimovies.mvp.data.db.model.Option;
-import com.elifbyte.dimovies.mvp.data.db.model.Question;
 import com.elifbyte.dimovies.mvp.data.db.model.User;
 
 import java.util.List;
@@ -36,23 +34,7 @@ public interface DbHelper {
 
     Observable<Boolean> isFavoriteEmpty();
 
-    //    todo: hapus yang g kepake
     Observable<Long> insertUser(final User user);
 
     Observable<List<User>> getAllUsers();
-
-    Observable<List<Question>> getAllQuestions();
-
-    Observable<Boolean> isQuestionEmpty();
-
-    Observable<Boolean> isOptionEmpty();
-
-    Observable<Boolean> saveQuestion(Question question);
-
-    Observable<Boolean> saveOption(Option option);
-
-    Observable<Boolean> saveQuestionList(List<Question> questionList);
-
-    Observable<Boolean> saveOptionList(List<Option> optionList);
-
 }

@@ -18,6 +18,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission android:name="com.elifbyte.dimovies.mvp.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.elifbyte.dimovies.mvp.WRITE_DATABASE" android:protectionLevel="normal" />
+
     <application
         android:name="com.elifbyte.dimovies.mvp.MvpApp"
         android:allowBackup="true"
@@ -73,6 +76,13 @@
                 android:value=".ui.main.MainActivity"
                 android:resource="@xml/searchable" />
         </activity>
+
+        <provider
+            android:authorities="com.elifbyte.dimovies.mvp"
+            android:name=".data.provider.FavoriteProvider"
+            android:exported="true"
+            android:readPermission="com.elifbyte.dimovies.mvp.READ_DATABASE"
+            android:writePermission="com.elifbyte.dimovies.mvp.WRITE_DATABASE" />
 
     </application>
 

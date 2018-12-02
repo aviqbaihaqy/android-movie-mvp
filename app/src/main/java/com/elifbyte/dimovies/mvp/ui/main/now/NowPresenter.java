@@ -50,8 +50,7 @@ public class NowPresenter<V extends NowMvpView> extends BasePresenter<V>
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(new Consumer<MovieResponse>() {
                     @Override
-                    public void accept(@NonNull MovieResponse movieResponse)
-                            throws Exception {
+                    public void accept(@NonNull MovieResponse movieResponse) {
                         if (movieResponse != null && movieResponse.getResults() != null) {
                             getMvpView().updateMovie(movieResponse.getResults());
                         }
@@ -59,8 +58,7 @@ public class NowPresenter<V extends NowMvpView> extends BasePresenter<V>
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(@NonNull Throwable throwable)
-                            throws Exception {
+                    public void accept(@NonNull Throwable throwable) {
                         if (!isViewAttached()) {
                             return;
                         }

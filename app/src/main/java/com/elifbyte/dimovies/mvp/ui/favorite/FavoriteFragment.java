@@ -1,10 +1,7 @@
 package com.elifbyte.dimovies.mvp.ui.favorite;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +12,7 @@ import android.view.ViewGroup;
 import com.elifbyte.dimovies.mvp.R;
 import com.elifbyte.dimovies.mvp.data.db.model.Favorite;
 import com.elifbyte.dimovies.mvp.di.component.ActivityComponent;
-import com.elifbyte.dimovies.mvp.ui.base.BaseDialog;
 import com.elifbyte.dimovies.mvp.ui.base.BaseFragment;
-import com.elifbyte.dimovies.mvp.ui.main.now.NowFragment;
 
 import java.util.List;
 

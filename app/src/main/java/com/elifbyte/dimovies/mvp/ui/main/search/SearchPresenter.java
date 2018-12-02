@@ -62,19 +62,15 @@ public class SearchPresenter<V extends SearchMvpView> extends BasePresenter<V> i
         getObservableQuery(searchView)
                 .filter(new Predicate<String>() {
                     @Override
-                    public boolean test(String s) throws Exception {
-                        if (s.equals("")) {
-                            return false;
-                        } else {
-                            return true;
-                        }
+                    public boolean test(String s) {
+                        return !s.equals("");
                     }
                 })
                 .debounce(3, TimeUnit.SECONDS)
                 .distinctUntilChanged()
                 .switchMapSingle(new Function<String, SingleSource<MovieResponse>>() {
                     @Override
-                    public SingleSource<MovieResponse> apply(String s) throws Exception {
+                    public SingleSource<MovieResponse> apply(String s) {
                         return getDataManager()
                                 .getSearchApiCall(s)
                                 .subscribeOn(getSchedulerProvider().io())
