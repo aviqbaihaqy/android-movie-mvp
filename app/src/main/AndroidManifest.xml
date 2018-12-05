@@ -14,25 +14,25 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.elifbyte.dimovies.mvp">
+    package="com.elifbyte.dimovies3.mvp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <permission android:name="com.elifbyte.dimovies.mvp.READ_DATABASE" android:protectionLevel="normal" />
-    <permission android:name="com.elifbyte.dimovies.mvp.WRITE_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.elifbyte.dimovies3.mvp.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.elifbyte.dimovies3.mvp.WRITE_DATABASE" android:protectionLevel="normal" />
 
     <application
-        android:name="com.elifbyte.dimovies.mvp.MvpApp"
+        android:name="com.elifbyte.dimovies3.mvp.MvpApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".service.SyncService" />
+        <service android:name="com.elifbyte.dimovies3.mvp.service.SyncService" />
 
         <activity
-            android:name="com.elifbyte.dimovies.mvp.ui.splash.SplashActivity"
+            android:name="com.elifbyte.dimovies3.mvp.ui.splash.SplashActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeFullScreen">
@@ -44,26 +44,26 @@
 
 
         <activity
-            android:name="com.elifbyte.dimovies.mvp.ui.main.MainActivity"
+            android:name="com.elifbyte.dimovies3.mvp.ui.main.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.elifbyte.dimovies.mvp.ui.main.detail.DetailActivity"
+            android:name="com.elifbyte.dimovies3.mvp.ui.main.detail.DetailActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.main.MainActivity"
+            android:parentActivityName="com.elifbyte.dimovies3.mvp.ui.main.MainActivity"
             android:screenOrientation="portrait">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity" />
+                android:value="com.elifbyte.dimovies3.mvp.ui.main.MainActivity" />
         </activity>
 
         <activity
-            android:name="com.elifbyte.dimovies.mvp.ui.main.search.SearchActivity"
+            android:name="com.elifbyte.dimovies3.mvp.ui.main.search.SearchActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".ui.main.MainActivity"
+            android:parentActivityName="com.elifbyte.dimovies3.mvp.ui.main.MainActivity"
             android:screenOrientation="portrait">
 
             <intent-filter>
@@ -73,16 +73,16 @@
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity"
+                android:value="com.elifbyte.dimovies3.mvp.ui.main.MainActivity"
                 android:resource="@xml/searchable" />
         </activity>
 
         <provider
-            android:authorities="com.elifbyte.dimovies.mvp"
-            android:name=".data.provider.FavoriteProvider"
+            android:authorities="com.elifbyte.dimovies3.mvp"
+            android:name="com.elifbyte.dimovies3.mvp.data.provider.FavoriteProvider"
             android:exported="true"
-            android:readPermission="com.elifbyte.dimovies.mvp.READ_DATABASE"
-            android:writePermission="com.elifbyte.dimovies.mvp.WRITE_DATABASE" />
+            android:readPermission="com.elifbyte.dimovies3.mvp.READ_DATABASE"
+            android:writePermission="com.elifbyte.dimovies3.mvp.WRITE_DATABASE" />
 
     </application>
 

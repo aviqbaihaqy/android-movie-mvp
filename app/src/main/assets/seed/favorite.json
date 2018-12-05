@@ -1,8 +1,8 @@
 [
   {
     "vote_count": 0,
-    "movieId": 503314,
-    "vmovieIdeo": false,
+    "id": 503314,
+    "video": false,
     "voteAverage": 0,
     "title": "Dragon Ball Super: Broly",
     "popularity": 33.337,
@@ -21,8 +21,8 @@
   },
   {
     "vote_count": 0,
-    "movieId": 428078,
-    "vmovieIdeo": false,
+    "id": 428078,
+    "video": false,
     "voteAverage": 0,
     "title": "Mortal Engines",
     "popularity": 31.397,
@@ -39,8 +39,8 @@
   },
   {
     "vote_count": 7,
-    "movieId": 461928,
-    "vmovieIdeo": false,
+    "id": 461928,
+    "video": false,
     "voteAverage": 2.3,
     "title": "Anna and the Apocalypse",
     "popularity": 30.325,
@@ -58,8 +58,8 @@
   },
   {
     "vote_count": 275,
-    "movieId": 460885,
-    "vmovieIdeo": false,
+    "id": 460885,
+    "video": false,
     "voteAverage": 6.3,
     "title": "Mandy",
     "popularity": 29.075,
@@ -78,8 +78,8 @@
   },
   {
     "vote_count": 34,
-    "movieId": 531593,
-    "vmovieIdeo": false,
+    "id": 531593,
+    "video": false,
     "voteAverage": 4.7,
     "title": "Reprisal",
     "popularity": 27.654,
@@ -93,7 +93,7 @@
     ],
     "backdropPath": "/apfur3XEQhEoKxb7tc1PvwvYe5B.jpg",
     "adult": false,
-    "overview": "Jacob, a bank manager haunted by a violent heist that took the life of a coworker, teams up with his ex-cop neighbor, James, to bring down the assailant. While the two men work together to figure out the thief’s next move, Gabriel, the highly-trained criminal, is one step ahead. When Gabriel kmovieIdnaps Jacob’s wife and daughter, Jacob barrels down a path of bloodshed that initiates an explosive counterattack and brings all three men to the breaking point.",
+    "overview": "Jacob, a bank manager haunted by a violent heist that took the life of a coworker, teams up with his ex-cop neighbor, James, to bring down the assailant. While the two men work together to figure out the thief’s next move, Gabriel, the highly-trained criminal, is one step ahead. When Gabriel kidnaps Jacob’s wife and daughter, Jacob barrels down a path of bloodshed that initiates an explosive counterattack and brings all three men to the breaking point.",
     "releaseDate": "2018-08-31"
   }
 ]
